@@ -8,7 +8,7 @@ class PerfAnalyticsLibrary {
     window.addEventListener("load", () => {
       setTimeout(() => {
         const performanceTiming = performance.getEntriesByType("navigation")[0];
-        const paintTiming = performance.getEntriesByType("paint")[1];
+        const paintTiming = performance.getEntriesByType("paint")[0];
         const ttfb =
             performanceTiming.responseStart - performanceTiming.requestStart;
         const fcp = paintTiming?.startTime;
@@ -18,7 +18,7 @@ class PerfAnalyticsLibrary {
             performanceTiming.domContentLoadedEventStart;
         const analyticData = {
           ttfb,
-          fcp,
+          fcp : fcp || 0,
           dom_load: domComplete,
           window_load: windowLoad,
         };
